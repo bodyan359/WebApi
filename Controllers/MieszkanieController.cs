@@ -8,7 +8,7 @@ using WebApi.Models;
 
 namespace WebApi.Controllers
 {
-    [Route("api/1")]
+    [Route("api/all_mieszkania")]
     [ApiController]
     public class MieszkanieController : ControllerBase
     {
@@ -23,10 +23,20 @@ namespace WebApi.Controllers
             return Ok(_context.Ipbpr.ToList());
         }
        // api/emps/4
-        [HttpGet("PrimaryId:nchar")]
+        [HttpGet("api/4")]
         public IActionResult GetMieszkanie(string PrimaryId)
         {
-            var mieszkanie = _context.Ipbpr.FirstOrDefault(e => e.PrimaryId == PrimaryId);
+            var mieszkanie = _context.Ipbpr.FirstOrDefault(e => e.PrimaryId == "4");
+            if (mieszkanie == null)
+            {
+                return NotFound();
+            }
+            return Ok(mieszkanie);
+        }
+        [HttpGet("cena/500000")]
+        public IActionResult GetMieszkanie(int Cena)
+        {
+            var mieszkanie = _context.Ipbpr.FirstOrDefault(e => e.Cenam > 50000);
             if (mieszkanie == null)
             {
                 return NotFound();

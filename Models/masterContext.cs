@@ -41,8 +41,8 @@ namespace WebApi.Models
                     .HasMaxLength(10)
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.Cena)
-                    .HasColumnName("cena")
+                entity.Property(e => e.Cenam)
+                    .HasColumnName("cenam")
                     .HasMaxLength(10);
 
                 entity.Property(e => e.DlugoscMieszkania)

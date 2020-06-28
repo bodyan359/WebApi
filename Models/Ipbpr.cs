@@ -9,6 +9,6 @@ namespace WebApi.Models
         public string Ilosc { get; set; }
         public string Kategoria { get; set; }
         public string DlugoscMieszkania { get; set; }
-        public string Cena { get; set; }
+        public int Cenam { get; set; }
     }
 }
