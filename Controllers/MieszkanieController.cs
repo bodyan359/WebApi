@@ -23,10 +23,10 @@ namespace WebApi.Controllers
             return Ok(_context.Ipbpr.ToList());
         }
        // api/emps/4
-        [HttpGet("api/4")]
+        [HttpGet("api/{PrimaryID}")]
         public IActionResult GetMieszkanie(string PrimaryId)
         {
-            var mieszkanie = _context.Ipbpr.FirstOrDefault(e => e.PrimaryId == "4");
+            var mieszkanie = _context.Ipbpr.FirstOrDefault(e => e.PrimaryId == PrimaryId);
             if (mieszkanie == null)
             {
                 return NotFound();
