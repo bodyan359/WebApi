@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Remotion.Linq.Clauses;
 using WebApi.Models;
 
 namespace WebApi.Controllers
@@ -22,7 +23,7 @@ namespace WebApi.Controllers
         {
             return Ok(_context.Ipbpr.ToList());
         }
-       // api/emps/4
+       // api/4
         [HttpGet("api/{PrimaryID}")]
         public IActionResult GetMieszkanie(string PrimaryId)
         {
@@ -33,15 +34,41 @@ namespace WebApi.Controllers
             }
             return Ok(mieszkanie);
         }
-        [HttpGet("cena/500000")]
-        public IActionResult GetMieszkanie(int Cena)
-        {
-            var mieszkanie = _context.Ipbpr.FirstOrDefault(e => e.Cenam > 50000);
+        //category A B C D
+        [HttpGet("category/{Kategory}")]
+        public IActionResult GetKategory(string Kategory)
+        {   
+            var mieszkanie = _context.Ipbpr.Where(e => e.Kategoria == Kategory);
             if (mieszkanie == null)
             {
                 return NotFound();
             }
             return Ok(mieszkanie);
+        }
+        //4 PARAMETRA возвращает Букву
+        // A  ot ceny 100   
+        // B  ot ceny 200
+        // C ot ceny 500
+        // D        1000
+
+        [HttpGet("price/{Cena}")]
+        public IActionResult GetCategory(int Cena)
+        {
+            if (Cena < 200000)
+            {
+                return Ok("A");
+            }
+            if (Cena < 500000)
+            {
+                return Ok("B");
+            }
+            if (Cena < 1000000)
+            {
+                return Ok("C");
+            }
+             
+            return Ok("D");
+            
         }
     }
 }
