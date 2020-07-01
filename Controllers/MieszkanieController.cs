@@ -23,7 +23,7 @@ namespace WebApi.Controllers
         {
             return Ok(_context.Ipbpr.ToList());
         }
-       // api/4
+        // api/4
         [HttpGet("api/{PrimaryID}")]
         public IActionResult GetMieszkanie(string PrimaryId)
         {
@@ -37,7 +37,7 @@ namespace WebApi.Controllers
         //category A B C D
         [HttpGet("category/{Kategory}")]
         public IActionResult GetKategory(string Kategory)
-        {   
+        {
             var mieszkanie = _context.Ipbpr.Where(e => e.Kategoria == Kategory);
             if (mieszkanie == null)
             {
@@ -45,7 +45,7 @@ namespace WebApi.Controllers
             }
             return Ok(mieszkanie);
         }
-        //4 PARAMETRA возвращает Букву
+        //4 PARAMETRA возвращает Буy0у
         // A  ot ceny 100   
         // B  ot ceny 200
         // C ot ceny 500
@@ -66,9 +66,15 @@ namespace WebApi.Controllers
             {
                 return Ok("C");
             }
-             
             return Ok("D");
-            
+
+        }
+
+        [HttpGet("Kod")]
+        public IActionResult GetKey()
+        {
+            string randoms = Guid.NewGuid().ToString().Replace("-", string.Empty).Replace("+", string.Empty).Substring(8, 8);
+            return Ok(randoms);
         }
     }
 }
